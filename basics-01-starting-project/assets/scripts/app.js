@@ -1,34 +1,66 @@
-let currentResult = 0;
+const defaultResult = 0;
+let currentResult = defaultResult;
+let currentCalculationOutputDisplay = "";
 
 function getUserNumberInput() {
-  // the input is already a number, no need to convert it using parseFloat or Number
-  // the plus sign at the beginning of userInput.value converts it to a number
-  const enteredNumber = +userInput.value;
-  return enteredNumber;
+  // If the input field is empty, `parseInt("")` returns `NaN`.
+  return +userInput.value;
 }
 
 function add() {
-  const calculationDescription = `${currentResult} + ${getUserNumberInput()}`;
-  currentResult = currentResult + getUserNumberInput();
-  outputResult(currentResult, calculationDescription);
+  let enteredNumber = getUserNumberInput();
+  if (isNaN(enteredNumber)) {
+    return;
+  }
+  if (currentResult === 0) {
+    currentCalculationOutputDisplay = enteredNumber.toString();
+  } else {
+    currentCalculationOutputDisplay = `${currentCalculationOutputDisplay} + ${enteredNumber}`;
+  }
+  currentResult += enteredNumber;
+  outputResult(currentResult, currentCalculationOutputDisplay);
 }
 
 function subtract() {
-  const calculationDescription = `${currentResult} - ${getUserNumberInput()}`;
-  currentResult = currentResult - getUserNumberInput();
-  outputResult(currentResult, calculationDescription);
+  let enteredNumber = getUserNumberInput();
+  if (isNaN(enteredNumber)) {
+    return;
+  }
+  if (currentResult === 0) {
+    currentCalculationOutputDisplay = enteredNumber.toString();
+  } else {
+    currentCalculationOutputDisplay = `${currentCalculationOutputDisplay} - ${enteredNumber}`;
+  }
+  currentResult -= enteredNumber;
+  outputResult(currentResult, currentCalculationOutputDisplay);
 }
 
 function multiply() {
-  const calculationDescription = `${currentResult} * ${getUserNumberInput()}`;
-  currentResult = currentResult * getUserNumberInput();
-  outputResult(currentResult, calculationDescription);
+  let enteredNumber = getUserNumberInput();
+  if (isNaN(enteredNumber)) {
+    return;
+  }
+  if (currentResult === 0) {
+    currentCalculationOutputDisplay = enteredNumber.toString();
+  } else {
+    currentCalculationOutputDisplay = `${currentCalculationOutputDisplay} * ${enteredNumber}`;
+  }
+  currentResult *= enteredNumber;
+  outputResult(currentResult, currentCalculationOutputDisplay);
 }
 
 function divide() {
-  const calculationDescription = `${currentResult} / ${getUserNumberInput()}`;
-  currentResult = currentResult / getUserNumberInput();
-  outputResult(currentResult, calculationDescription);
+  let enteredNumber = getUserNumberInput();
+  if (isNaN(enteredNumber)) {
+    return;
+  }
+  if (currentResult === 0) {
+    currentCalculationOutputDisplay = enteredNumber.toString();
+  } else {
+    currentCalculationOutputDisplay = `${currentCalculationOutputDisplay} / ${enteredNumber}`;
+  }
+  currentResult /= enteredNumber;
+  outputResult(currentResult, currentCalculationOutputDisplay);
 }
 
 addBtn.addEventListener("click", add);
