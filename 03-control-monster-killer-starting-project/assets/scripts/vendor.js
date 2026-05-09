@@ -59,7 +59,12 @@ function setPlayerHealth(health) {
 }
 
 function updateRemainingCounts(strongLeft, strongMax, healLeft, healMax) {
-  strongAttackBtn.textContent =
-    "STRONG ATTACK (" + strongLeft + " / " + strongMax + ")";
-  healBtn.textContent = "HEAL (" + healLeft + " / " + healMax + ")";
+  strongAttackBtn.innerHTML =
+    "STRONG ATTACK <span class='btn-count'>" +
+    strongLeft +
+    " of " +
+    strongMax +
+    "</span>";
+  healBtn.innerHTML =
+    "HEAL <span class='btn-count'>" + healLeft + " of " + healMax + "</span>";
 }

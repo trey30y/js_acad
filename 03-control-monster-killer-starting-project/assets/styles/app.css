@@ -77,7 +77,16 @@ button {
   border-radius: 6px;
   cursor: pointer;
   margin: 0.3rem 0.5rem;
-  width: 11rem;
+  width: 12.5rem;
+}
+
+.btn-count {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.1rem 0.5rem;
+  border-radius: 4px;
+  margin-left: 0.3rem;
+  font-size: 0.85rem;
 }
 
 button:focus {
