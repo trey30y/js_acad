@@ -3,13 +3,35 @@ const STRONG_ATTACK_VALUE = 15;
 const MONSTER_ATTACK_VALUE = 10;
 const HEAL_VALUE = 20;
 
+const MODE_ATTACK = "ATTACK";
+const STRONG_ATTACK = "STRONG_ATTACK";
+const HEAL = "HEAL";
+const LOG_EVENT_PLAYER_ATTACK = "PLAYER_ATTACK";
+const LOG_EVENT_MONSTER_ATTACK = "MONSTER_ATTACK";
+const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
+const LOG_EVENT_PLAYER_STRONG_ATTACK = "PLAYER_STRONG_ATTACK";
+const LOG_EVENT_GAME_OVER = "GAME_OVER";
+
 let chosenMaxLife = 100;
 
 let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
+let battleLog = [];
 
 adjustHealthBars(chosenMaxLife);
+
+function writeToLog(event, value, monsterHealth, playerHealth) {
+  let logEntry;
+  logEntry = {
+    event: event,
+    // the amount of attack, heal, etc
+    value: value,
+    finalMonsterHealth: monsterHealth,
+    finalPlayerHealth: playerHealth,
+  };
+  battleLog.push(logEntry);
+}
 
 function reset() {
   currentMonsterHealth = chosenMaxLife;
@@ -45,9 +67,9 @@ function endRound() {
 
 function attackMonster(mode) {
   let maxDamage;
-  if (mode === "ATTACK") {
+  if (mode === MODE_ATTACK) {
     maxDamage = ATTACK_VALUE;
-  } else if (mode === "STRONG_ATTACK") {
+  } else if (mode === STRONG_ATTACK) {
     maxDamage = STRONG_ATTACK_VALUE;
   }
   const damage = dealMonsterDamage(maxDamage);
@@ -56,11 +78,11 @@ function attackMonster(mode) {
 }
 
 function attackHandler() {
-  attackMonster("ATTACK");
+  attackMonster(MODE_ATTACK);
 }
 
 function strongAttackHandler() {
-  attackMonster("STRONG_ATTACK");
+  attackMonster(STRONG_ATTACK);
 }
 
 function healPlayerHandler() {
