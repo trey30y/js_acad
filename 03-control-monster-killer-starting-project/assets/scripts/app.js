@@ -1,7 +1,7 @@
 const ATTACK_VALUE = 10;
 const STRONG_ATTACK_VALUE = 15;
 const MONSTER_ATTACK_VALUE = 10;
-const HEAL_VALUE = 20;
+const HEAL_VALUE = 10;
 
 const MODE_ATTACK = "ATTACK";
 const STRONG_ATTACK = "STRONG_ATTACK";
@@ -72,6 +72,7 @@ function attackMonster(mode) {
   } else if (mode === STRONG_ATTACK) {
     maxDamage = STRONG_ATTACK_VALUE;
   }
+  // damage returns the dealt damagage
   const damage = dealMonsterDamage(maxDamage);
   currentMonsterHealth -= damage;
   endRound();
