@@ -33,10 +33,18 @@ updateRemainingCounts(
 
 function writeToLog(event, value, monsterHealth, playerHealth) {
   let logEntry;
+  // Convert value to a number in case it's a string
+  const numericValue = Number(value);
+
+  // Check if numericValue is a valid number before calling .toFixed()
+  const formattedValue = !isNaN(numericValue)
+    ? numericValue.toFixed(2)
+    : "0.00";
+
   logEntry = {
     event: event,
     // the amount of attack, heal, etc
-    value: +value.toFixed(2),
+    value: formattedValue,
     finalMonsterHealth: +monsterHealth.toFixed(2),
     finalPlayerHealth: +playerHealth.toFixed(2),
   };
@@ -77,46 +85,42 @@ function endRound() {
   }
 
   if (currentMonsterHealth <= 0 && currentPlayerHealth > 0) {
-    alert("You won!");
     writeToLog(
       LOG_EVENT_GAME_OVER,
       "PLAYER WON",
       currentMonsterHealth,
       currentPlayerHealth,
     );
+    reset();
+    alert("You won!");
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth > 0) {
-    alert("You lost!");
     writeToLog(
       LOG_EVENT_GAME_OVER,
       "MONSTER WON",
       currentMonsterHealth,
       currentPlayerHealth,
     );
+    reset();
+    alert("You lost!");
   } else if (currentPlayerHealth <= 0 && currentMonsterHealth <= 0) {
-    alert("You have a draw!");
     writeToLog(
       LOG_EVENT_GAME_OVER,
       "DRAW GAME",
       currentMonsterHealth,
       currentPlayerHealth,
     );
-  }
-
-  if (currentMonsterHealth <= 0 || currentPlayerHealth <= 0) {
     reset();
+    alert("You have a draw!");
   }
 }
 
 function attackMonster(mode) {
-  let maxDamage;
-  let logEvent;
-  if (mode === MODE_ATTACK) {
-    maxDamage = ATTACK_VALUE;
-    logEvent = LOG_EVENT_PLAYER_ATTACK;
-  } else if (mode === STRONG_ATTACK) {
-    maxDamage = STRONG_ATTACK_VALUE;
-    logEvent = LOG_EVENT_PLAYER_STRONG_ATTACK;
-  }
+  let maxDamage = mode === MODE_ATTACK ? ATTACK_VALUE : STRONG_ATTACK_VALUE;
+  let logEvent =
+    mode === MODE_ATTACK
+      ? LOG_EVENT_PLAYER_ATTACK
+      : LOG_EVENT_PLAYER_STRONG_ATTACK;
+
   // damage returns the dealt damagage
   const damage = dealMonsterDamage(maxDamage);
   currentMonsterHealth -= damage;
