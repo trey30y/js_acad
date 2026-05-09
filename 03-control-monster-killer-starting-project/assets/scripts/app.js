@@ -3,6 +3,9 @@ const STRONG_ATTACK_VALUE = 15;
 const MONSTER_ATTACK_VALUE = 10;
 const HEAL_VALUE = 10;
 
+const MAX_STRONG_ATTACKS = 2;
+const MAX_HEALS = 2;
+
 const MODE_ATTACK = "ATTACK";
 const STRONG_ATTACK = "STRONG_ATTACK";
 const HEAL = "HEAL";
@@ -18,8 +21,16 @@ let currentMonsterHealth = chosenMaxLife;
 let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 let battleLog = [];
+let remainingStrongAttacks = MAX_STRONG_ATTACKS;
+let remainingHeals = MAX_HEALS;
 
 adjustHealthBars(chosenMaxLife);
+updateRemainingCounts(
+  remainingStrongAttacks,
+  MAX_STRONG_ATTACKS,
+  remainingHeals,
+  MAX_HEALS,
+);
 
 function writeToLog(event, value, monsterHealth, playerHealth) {
   let logEntry;
@@ -36,7 +47,15 @@ function writeToLog(event, value, monsterHealth, playerHealth) {
 function reset() {
   currentMonsterHealth = chosenMaxLife;
   currentPlayerHealth = chosenMaxLife;
+  remainingStrongAttacks = MAX_STRONG_ATTACKS;
+  remainingHeals = MAX_HEALS;
   resetGame(chosenMaxLife);
+  updateRemainingCounts(
+    remainingStrongAttacks,
+    MAX_STRONG_ATTACKS,
+    remainingHeals,
+    MAX_HEALS,
+  );
 }
 
 function endRound() {
@@ -111,10 +130,20 @@ function attackHandler() {
 }
 
 function strongAttackHandler() {
+  if (remainingStrongAttacks <= 0) return;
+  remainingStrongAttacks--;
   attackMonster(STRONG_ATTACK);
+  updateRemainingCounts(
+    remainingStrongAttacks,
+    MAX_STRONG_ATTACKS,
+    remainingHeals,
+    MAX_HEALS,
+  );
 }
 
 function healPlayerHandler() {
+  if (remainingHeals <= 0) return;
+  remainingHeals--;
   let healValue;
   if (currentPlayerHealth >= chosenMaxLife - HEAL_VALUE) {
     alert("You can't heal to more than your max initial health.");
@@ -131,6 +160,12 @@ function healPlayerHandler() {
     currentPlayerHealth,
   );
   endRound();
+  updateRemainingCounts(
+    remainingStrongAttacks,
+    MAX_STRONG_ATTACKS,
+    remainingHeals,
+    MAX_HEALS,
+  );
 }
 
 function printLogHandler() {

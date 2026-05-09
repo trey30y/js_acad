@@ -57,3 +57,9 @@ function setPlayerHealth(health) {
   playerHealthBar.value = health;
   updateHealthText();
 }
+
+function updateRemainingCounts(strongLeft, strongMax, healLeft, healMax) {
+  strongAttackBtn.textContent =
+    "STRONG ATTACK (" + strongLeft + " / " + strongMax + ")";
+  healBtn.textContent = "HEAL (" + healLeft + " / " + healMax + ")";
+}
