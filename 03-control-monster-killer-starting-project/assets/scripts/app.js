@@ -14,17 +14,38 @@ const LOG_EVENT_PLAYER_HEAL = "PLAYER_HEAL";
 const LOG_EVENT_PLAYER_STRONG_ATTACK = "PLAYER_STRONG_ATTACK";
 const LOG_EVENT_GAME_OVER = "GAME_OVER";
 
-let chosenMaxLife = 100;
-
-let currentMonsterHealth = chosenMaxLife;
-let currentPlayerHealth = chosenMaxLife;
 let hasBonusLife = true;
 let battleLog = [];
 let remainingStrongAttacks = MAX_STRONG_ATTACKS;
 let remainingHeals = MAX_HEALS;
 let lastLoggedEntry = 0;
 
+function getMaxLifeValues() {
+  const enteredValue = prompt("Maximum life for you and the monster.", "100");
+  const parsedValue = parseInt(enteredValue);
+  if (isNaN(parsedValue)) {
+    throw { message: "Invalid user input, not a number" };
+  }
+  return parsedValue;
+}
+
+let chosenMaxLife;
+
+// In JavaScript, you shouldn't wrap everything in a try...catch block. It is best used for unpredictable events that you cannot control with simple logic like if/else.
+try {
+  chosenMaxLife = getMaxLifeValues();
+} catch (error) {
+  console.log(error.message);
+  chosenMaxLife = 100;
+}
+// finally {
+// }
+
+let currentMonsterHealth = chosenMaxLife;
+let currentPlayerHealth = chosenMaxLife;
+
 adjustHealthBars(chosenMaxLife);
+
 updateRemainingCounts(
   remainingStrongAttacks,
   MAX_STRONG_ATTACKS,
