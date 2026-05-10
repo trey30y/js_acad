@@ -22,6 +22,7 @@ let hasBonusLife = true;
 let battleLog = [];
 let remainingStrongAttacks = MAX_STRONG_ATTACKS;
 let remainingHeals = MAX_HEALS;
+let currentLogEntriesDisplayed = 0;
 
 adjustHealthBars(chosenMaxLife);
 updateRemainingCounts(
@@ -63,6 +64,8 @@ function reset() {
     remainingHeals,
     MAX_HEALS,
   );
+  currentLogEntriesDisplayed = 0;
+  console.clear();
 }
 
 function endRound() {
@@ -172,9 +175,37 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
-  for (log of battleLog) {
-    console.log(log);
+  // [i, log] is called "Array Destructuring"
+  for (const [i, log] of battleLog.entries()) {
+    // Check if index is greater or same as displayed count
+    if (i >= currentLogEntriesDisplayed) {
+      console.log(displayLog(log));
+      currentLogEntriesDisplayed += 1;
+    }
   }
+}
+
+function displayLog(log) {
+  let detailedLog = "";
+  for (let key in log) {
+    switch (key) {
+      case "event":
+        detailedLog += `${log[key]} with `;
+        break;
+      case "value":
+        detailedLog += isNaN(parseFloat(log[key]))
+          ? `${log[key]}`
+          : `${parseFloat(log[key]).toFixed(2)}, `;
+        break;
+      case "finalMonsterHealth":
+        detailedLog += `monster: ${log[key]}, `;
+        break;
+      case "finalPlayerHealth":
+        detailedLog += `player: ${log[key]}`;
+        break;
+    }
+  }
+  return detailedLog;
 }
 
 attackBtn.addEventListener("click", attackHandler);
