@@ -56,7 +56,7 @@ function reset() {
   currentPlayerHealth = chosenMaxLife;
   remainingStrongAttacks = MAX_STRONG_ATTACKS;
   remainingHeals = MAX_HEALS;
-  resetGame(chosenMaxLife);
+  resetLifeBars(chosenMaxLife);
   updateRemainingCounts(
     remainingStrongAttacks,
     MAX_STRONG_ATTACKS,
@@ -172,7 +172,9 @@ function healPlayerHandler() {
 }
 
 function printLogHandler() {
-  console.log(battleLog);
+  for (log of battleLog) {
+    console.log(log);
+  }
 }
 
 attackBtn.addEventListener("click", attackHandler);

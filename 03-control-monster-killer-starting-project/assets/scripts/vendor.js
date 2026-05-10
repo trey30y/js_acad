@@ -43,7 +43,7 @@ function increasePlayerHealth(healValue) {
   updateHealthText();
 }
 
-function resetGame(value) {
+function resetLifeBars(value) {
   playerHealthBar.value = value;
   monsterHealthBar.value = value;
   updateHealthText();
