@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="assets/styles/app.css" />
+    <script src="assets/scripts/app_v4.js" defer></script>
+  </head>
+  <body>
+    <div class="game-container">
+      <!-- Choices Display -->
+      <section class="card" id="choices-card">
+        <h2>Choices</h2>
+        <div class="choice-display">
+          <div class="choice-box">
+            <span class="label">Player</span>
+            <span class="value pending" id="player-choice">—</span>
+          </div>
+          <span class="vs">VS</span>
+          <div class="choice-box">
+            <span class="label">CPU</span>
+            <span class="value pending" id="cpu-choice">—</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Choice Buttons -->
+      <section class="card" id="choice-buttons-card">
+        <h2>Make Your Move</h2>
+        <div class="choice-buttons">
+          <button class="choice-btn" id="btn-rock" disabled>
+            <span class="choice-icon">🪨</span>
+            <span class="choice-name">Rock</span>
+          </button>
+          <button class="choice-btn" id="btn-paper" disabled>
+            <span class="choice-icon">📄</span>
+            <span class="choice-name">Paper</span>
+          </button>
+          <button class="choice-btn" id="btn-scissors" disabled>
+            <span class="choice-icon">✂️</span>
+            <span class="choice-name">Scissors</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Scoreboard -->
+      <section class="card" id="scoreboard-card">
+        <h2>Scoreboard</h2>
+        <div id="scoreboard">
+          <div class="score-item">
+            <div class="score-label">Player</div>
+            <div class="score-value" id="player-score">0</div>
+          </div>
+          <span class="score-divider">:</span>
+          <div class="score-item">
+            <div class="score-label">CPU</div>
+            <div class="score-value" id="cpu-score">0</div>
+          </div>
+        </div>
+        <div id="winner-display" class="info">
+          Click "Start Game" to begin a best of 3 match!
+        </div>
+      </section>
+
+      <!-- Controls -->
+      <section class="card" id="controls">
+        <div class="button-row">
+          <button id="start-game-btn">Start Game</button>
+          <button id="reset-game-btn">Reset Game</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
