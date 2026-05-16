@@ -95,3 +95,8 @@ persons.push({ name: "Ana", age: 39 });
 persons[0].age = 99;
 console.log(persons, "<=>", copiedPersons);
 console.log(persons, "<=>", copiedPersonsNew); // true copy
+
+// array destructuring
+const nameData = ["Max", "Little"];
+const [firstName, lastName] = nameData;
+console.log(`${firstName} ${lastName}`);
