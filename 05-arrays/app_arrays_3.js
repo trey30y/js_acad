@@ -97,6 +97,6 @@ console.log(persons, "<=>", copiedPersons);
 console.log(persons, "<=>", copiedPersonsNew); // true copy
 
 // array destructuring
-const nameData = ["Max", "Little"];
-const [firstName, lastName] = nameData;
-console.log(`${firstName} ${lastName}`);
+const nameData = ["Max", "Little", "Mr", 30];
+const [firstName, lastName, ...otherInfo] = nameData;
+console.log(`${firstName} ${lastName}, otherInfo: ${otherInfo}`);
