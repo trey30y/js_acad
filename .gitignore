@@ -3,3 +3,6 @@
 *.md
 nodemon.json
 .eslintrc.json
+node_modules/
+eslint.*
+package*
