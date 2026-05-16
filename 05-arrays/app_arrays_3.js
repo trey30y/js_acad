@@ -57,5 +57,5 @@ console.log();
 
 // filter()
 // prices greater than 6
-const pricestGreaterThan6 = prices.filter((price) => price > 6);
-console.log(`pricers>6: ${pricestGreaterThan6}`);
+const filteredPrices = prices.filter((price) => price > 6);
+console.log(`pricers>6: ${filteredPrices}`);
