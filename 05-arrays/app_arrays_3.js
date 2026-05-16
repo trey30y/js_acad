@@ -59,3 +59,39 @@ console.log();
 // prices greater than 6
 const filteredPrices = prices.filter((price) => price > 6);
 console.log(`pricers>6: ${filteredPrices}`);
+
+// reduce()
+// array.reduce((accumulator, currentValue, currentIndex, array) => {
+//   return nextAccumulatorValue;
+// }, initialValue);
+
+// CRITICAL: You must return the accumulator object back to the engine loop
+let sum = prices.reduce((accum, curr) => accum + curr, 0);
+console.log(`the sum of prices is: ${Number(sum.toFixed(2))}`);
+
+const data = "new york;10.99;2000";
+const transformData = data.split(";");
+console.log(transformData);
+
+const namedFragments = ["Max", "Little"];
+const name = namedFragments.join(" ");
+console.log(name);
+
+const copiedNamedFragments = [...namedFragments];
+namedFragments.unshift("Mr.");
+console.log(namedFragments, "<=>", copiedNamedFragments);
+
+console.log(`the min in prices: ${Math.min(...prices)}`);
+
+const persons = [
+  { name: "Max", age: 30 },
+  { name: "Manuel", age: 31 },
+];
+// while we have a new array, the objects in the array are the old objects
+const copiedPersons = [...persons];
+const copiedPersonsNew = [...persons.map((person) => ({ ...person }))];
+
+persons.push({ name: "Ana", age: 39 });
+persons[0].age = 99;
+console.log(persons, "<=>", copiedPersons);
+console.log(persons, "<=>", copiedPersonsNew); // true copy
