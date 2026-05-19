@@ -2,16 +2,16 @@ const numbers = [1, 2, 3];
 const tripled = Array.from(numbers, (num) => num * 3);
 // console.log(tripled); [3, 6, 9]
 
-const hobbies = ["sports", "cooking"];
+const favHobbies = ["sports", "cooking"];
 // push() adds item at the end of the array
-hobbies.push("reading");
+favHobbies.push("reading");
 // unshift() adds item at the beginning
-hobbies.unshift("coding");
+favHobbies.unshift("coding");
 // pop() remove the last element, returns the element returned
-const poppedValue = hobbies.pop();
+const poppedValue = favHobbies.pop();
 // shift() remove the item at the beginning
-hobbies.shift();
-console.log(hobbies);
+favHobbies.shift();
+console.log(favHobbies);
 
 // splice() - mutates the array in place
 // Remove 2 items starting at index 1 (Banana)
